@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn English</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #4CAF50;
+            padding: 20px;
+            text-align: center;
+            color: white;
+        }
+
+        h1 {
+            margin: 0;
+        }
+
+        nav {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        nav button {
+            display: inline-block;
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px 30px;
+            margin: 10px;
+            border: none;
+            font-size: 18px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        nav button:hover {
+            background-color: #45a049;
+        }
+
+        .level-content, .section-content {
+            max-width: 800px;
+            margin: 50px auto;
+            text-align: left;
+            display: none;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .level-content.active, .section-content.active {
+            display: block;
+        }
+
+        h2, h3 {
+            color: #4CAF50;
+        }
+
+        .question {
+            margin: 15px 0;
+        }
+
+        .result {
+            background-color: #f1f1f1;
+            padding: 10px;
+            margin-top: 20px;
+            display: none;
+        }
+
+        footer {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Learn English</h1>
+        <p>Select your level to start learning</p>
+    </header>
+
+    <nav>
+        <button onclick="showLevel('beginner')">Beginner</button>
+        <button onclick="showLevel('amateur')">Amateur</button>
+        <button onclick="showLevel('professional')">Professional</button>
+    </nav>
+
+    <!-- BEGINNER SECTION -->
+    <div id="beginner" class="level-content">
+        <h2>Beginner Level</h2>
+        <button onclick="showSection('beginnerComprehension')">Learn Comprehensions</button>
+        <button onclick="showSection('beginnerGrammar')">Learn Grammar</button>
+        <button onclick="showSection('beginnerQuiz')">Take Quiz</button>
+
+        <!-- Beginner Comprehension -->
+        <div id="beginnerComprehension" class="section-content">
+            <h3>Comprehension: The Cat and the Mouse</h3>
+            <p>Once upon a time, there was a cat that lived in a house. A mouse lived nearby, and every day the cat would try to catch the mouse. One day, the cat set a trap, but the mouse was clever and escaped...</p>
+            <h3>Questions</h3>
+            <div class="question">
+                <p>1. Who lived in the house?</p>
+                <label><input type="radio" name="q1" value="wrong"> A dog</label><br>
+                <label><input type="radio" name="q1" value="correct"> A cat</label><br>
+                <label><input type="radio" name="q1" value="wrong"> A bird</label><br>
+            </div>
+            <div class="question">
+                <p>2. What did the cat want to catch?</p>
+                <label><input type="radio" name="q2" value="wrong"> A rabbit</label><br>
+                <label><input type="radio" name="q2" value="correct"> A mouse</label><br>
+                <label><input type="radio" name="q2" value="wrong"> A fish</label><br>
+            </div>
+            <button onclick="calculateScore('q1', 'q2', 'beginnerComprehensionResult')">Submit</button>
+            <div id="beginnerComprehensionResult" class="result"></div>
+        </div>
+
+        <!-- Beginner Grammar -->
+        <div id="beginnerGrammar" class="section-content">
+            <h3>Grammar: Introduction to Verbs and Adjectives</h3>
+            <p>A verb is a word that describes an action (run, jump) or a state of being (is, are). An adjective is a word that describes a noun (happy, tall).</p>
+            <h3>Questions</h3>
+            <div class="question">
+                <p>1. What is a verb?</p>
+                <label><input type="radio" name="gq1" value="correct"> An action word</label><br>
+                <label><input type="radio" name="gq1" value="wrong"> A describing word</label><br>
+            </div>
+            <div class="question">
+                <p>2. What is an adjective?</p>
+                <label><input type="radio" name="gq2" value="correct"> A describing word</label><br>
+                <label><input type="radio" name="gq2" value="wrong"> An action word</label><br>
+            </div>
+            <button onclick="calculateScore('gq1', 'gq2', 'beginnerGrammarResult')">Submit</button>
+            <div id="beginnerGrammarResult" class="result"></div>
+        </div>
+
+        <!-- Beginner Quiz -->
+        <div id="beginnerQuiz" class="section-content">
+            <h3>Quiz: 2 Questions</h3>
+            <div class="question">
+                <p>1. What is the color of the sky?</p>
+                <label><input type="radio" name="quizq1" value="correct"> Blue</label><br>
+                <label><input type="radio" name="quizq1" value="wrong"> Green</label><br>
+            </div>
+            <div class="question">
+                <p>2. How many legs does a dog have?</p>
+                <label><input type="radio" name="quizq2" value="correct"> Four</label><br>
+                <label><input type="radio" name="quizq2" value="wrong"> Two</label><br>
+            </div>
+            <button onclick="calculateScore('quizq1', 'quizq2', 'beginnerQuizResult')">Submit</button>
+            <div id="beginnerQuizResult" class="result"></div>
+        </div>
+    </div>
+
+    <!-- AMATEUR SECTION -->
+    <div id="amateur" class="level-content">
+        <h2>Amateur Level</h2>
+        <button onclick="showSection('amateurComprehension')">Learn Comprehensions</button>
+        <button onclick="showSection('amateurGrammar')">Learn Grammar</button>
+        <button onclick="showSection('amateurQuiz')">Take Quiz</button>
+
+        <!-- Amateur Comprehension -->
+        <div id="amateurComprehension" class="section-content">
+            <h3>Comprehension: The Clever Fox</h3>
+            <p>Once upon a time, a clever fox lived in the forest. Every day, the fox would search for food. One day, he met a crow with a piece of cheese. The fox thought of a clever plan to get the cheese...</p>
+            <h3>Questions</h3>
+            <div class="question">
+                <p>1. Who lived in the forest?</p>
+                <label><input type="radio" name="aq1" value="wrong"> A rabbit</label><br>
+                <label><input type="radio" name="aq1" value="correct"> A fox</label><br>
+            </div>
+            <div class="question">
+                <p>2. What did the fox want from the crow?</p>
+                <label><input type="radio" name="aq2" value="correct"> Cheese</label><br>
+                <label><input type="radio" name="aq2" value="wrong"> Fish</label><br>
+            </div>
+            <button onclick="calculateScore('aq1', 'aq2', 'amateurComprehensionResult')">Submit</button>
+            <div id="amateurComprehensionResult" class="result"></div>
+        </div>
+
+        <!-- Amateur Grammar -->
+        <div id="amateurGrammar" class="section-content">
+            <h3>Grammar: Introduction to Tenses</h3>
+            <p>Tenses tell us when an action happens. The main tenses are present, past, and future.</p>
+            <h3>Questions</h3>
+            <div class="question">
+                <p>1. Which tense describes something happening now?</p>
+                <label><input type="radio" name="agq1" value="correct"> Present</label><br>
+                <label><input type="radio" name="agq1" value="wrong"> Past</label><br>
+            </div>
+            <div class="question">
+                <p>2. Which tense describes something that will happen?</p>
+                <label><input type="radio" name="agq2" value="correct"> Future</label><br>
+                <label><input type="radio" name="agq2" value="wrong"> Present</label><br>
+            </div>
+            <button onclick="calculateScore('agq1', 'agq2', 'amateurGrammarResult')">Submit</button>
+            <div id="amateurGrammarResult" class="result"></div>
+        </div>
+
+        <!-- Amateur Quiz -->
+        <div id="amateurQuiz" class="section-content">
+            <h3>Quiz: 2 Questions</h3>
+            <div class="question">
+                <p>1. What is the opposite of 'good'?</p>
+                <label><input type="radio" name="aquizq1" value="correct"> Bad</label><br>
+                <label><input type="radio" name="aquizq1" value="wrong"> Nice</label><br>
+            </div>
+            <div class="question">
+                <p>2. What is the synonym of 'fast'?</p>
+                <label><input type="radio" name="aquizq2" value="correct"> Quick</label><br>
+                <label><input type="radio" name="aquizq2" value="wrong"> Slow</label><br>
+            </div>
+            <button onclick="calculateScore('aquizq1', 'aquizq2', 'amateurQuizResult')">Submit</button>
+            <div id="amateurQuizResult" class="result"></div>
+        </div>
+    </div>
+
+    <!-- PROFESSIONAL SECTION -->
+    <div id="professional" class="level-content">
+        <h2>Professional Level</h2>
+        <button onclick="showSection('professionalComprehension')">Learn Comprehensions</button>
+        <button onclick="showSection('professionalGrammar')">Learn Grammar</button>
+        <button onclick="showSection('professionalQuiz')">Take Quiz</button>
+
+        <!-- Professional Comprehension -->
+        <div id="professionalComprehension" class="section-content">
+            <h3>Comprehension: The Lion's Wisdom</h3>
+            <p>A lion, known as the king of the jungle, was respected by all the animals. One day, the lion found a group of animals arguing. Using his wisdom, he helped them resolve the issue peacefully...</p>
+            <h3>Questions</h3>
+            <div class="question">
+                <p>1. Who was the king of the jungle?</p>
+                <label><input type="radio" name="pq1" value="wrong"> Elephant</label><br>
+                <label><input type="radio" name="pq1" value="correct"> Lion</label><br>
+            </div>
+            <div class="question">
+                <p>2. How did the lion resolve the conflict?</p>
+                <label><input type="radio" name="pq2" value="correct"> Peacefully</label><br>
+                <label><input type="radio" name="pq2" value="wrong"> Violently</label><br>
+            </div>
+            <button onclick="calculateScore('pq1', 'pq2', 'professionalComprehensionResult')">Submit</button>
+            <div id="professionalComprehensionResult" class="result"></div>
+        </div>
+
+        <!-- Professional Grammar -->
+        <div id="professionalGrammar" class="section-content">
+            <h3>Grammar: Active and Passive Voice</h3>
+            <p>The active voice emphasizes the subject performing the action, while the passive voice emphasizes the action itself.</p>
+            <h3>Questions</h3>
+            <div class="question">
+                <p>1. Which is an example of passive voice?</p>
+                <label><input type="radio" name="pgq1" value="correct"> The letter was written by John.</label><br>
+                <label><input type="radio" name="pgq1" value="wrong"> John wrote the letter.</label><br>
+            </div>
+            <div class="question">
+                <p>2. Which is an example of active voice?</p>
+                <label><input type="radio" name="pgq2" value="correct"> John wrote the letter.</label><br>
+                <label><input type="radio" name="pgq2" value="wrong"> The letter was written by John.</label><br>
+            </div>
+            <button onclick="calculateScore('pgq1', 'pgq2', 'professionalGrammarResult')">Submit</button>
+            <div id="professionalGrammarResult" class="result"></div>
+        </div>
+
+        <!-- Professional Quiz -->
+        <div id="professionalQuiz" class="section-content">
+            <h3>Quiz: 2 Questions</h3>
+            <div class="question">
+                <p>1. What is the plural of 'mouse'?</p>
+                <label><input type="radio" name="pquizq1" value="correct"> Mice</label><br>
+                <label><input type="radio" name="pquizq1" value="wrong"> Mouses</label><br>
+            </div>
+            <div class="question">
+                <p>2. What is the opposite of 'strong'?</p>
+                <label><input type="radio" name="pquizq2" value="correct"> Weak</label><br>
+                <label><input type="radio" name="pquizq2" value="wrong"> Fast</label><br>
+            </div>
+            <button onclick="calculateScore('pquizq1', 'pquizq2', 'professionalQuizResult')">Submit</button>
+            <div id="professionalQuizResult" class="result"></div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Learn English. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function showLevel(level) {
+            var levels = document.getElementsByClassName('level-content');
+            for (var i = 0; i < levels.length; i++) {
+                levels[i].classList.remove('active');
+            }
+            document.getElementById(level).classList.add('active');
+        }
+
+        function showSection(section) {
+            var sections = document.getElementsByClassName('section-content');
+            for (var i = 0; i < sections.length; i++) {
+                sections[i].classList.remove('active');
+            }
+            document.getElementById(section).classList.add('active');
+        }
+
+        function calculateScore(q1, q2, resultId) {
+            var score = 0;
+            var totalQuestions = 2;
+
+            if (document.querySelector('input[name="' + q1 + '"]:checked') && document.querySelector('input[name="' + q1 + '"]:checked').value === 'correct') {
+                score++;
+            }
+            if (document.querySelector('input[name="' + q2 + '"]:checked') && document.querySelector('input[name="' + q2 + '"]:checked').value === 'correct') {
+                score++;
+            }
+
+            var resultDiv = document.getElementById(resultId);
+            resultDiv.innerHTML = "You scored " + score + " out of " + totalQuestions;
+            resultDiv.style.display = 'block';
+        }
+    </script>
+</body>
+</html>
